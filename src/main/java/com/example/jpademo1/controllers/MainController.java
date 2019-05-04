@@ -61,6 +61,13 @@ public class MainController {
             return "register";
         }
 
+        //sprawdza czy nick nie jest zajety
+        if (userRepository.existsByUsername(login)) {
+            model.addAttribute("info", "Nick zajety");
+            return "register";
+        }
+
+        // dodaje rejestracje do bazy
         UserEntity userEntity = new UserEntity();
         userEntity.setPassword(password);
         userEntity.setEmail(email);
