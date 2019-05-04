@@ -7,23 +7,38 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Optional;
+
 @Controller
 public class MainController {
 
     @Autowired
     UserRepository userRepository;
 
+//zapisuje w bazie uzytkownika
+//    @GetMapping("/")
+//    @ResponseBody
+//    public String index(){
+//        UserEntity userEntity = new UserEntity();
+//        userEntity.setEmail("remoncik@wp.pl");
+//        userEntity.setUsername("remoncik1721");
+//        userEntity.setPassword("remoncik");
+//
+//
+//        userRepository.save(userEntity);
+//        return "Zapisano!!!1721";
+//    }
+
+    //pobiera użytkownika z bazy
     @GetMapping("/")
     @ResponseBody
-    public String index(){
-        UserEntity userEntity = new UserEntity();
-        userEntity.setEmail("ostatniaproba@wp.pl");
-        userEntity.setUsername("ostatniaproba1045");
-        userEntity.setPassword("ostatniaproba1");
-     
+    public String index() {
+        // jedego użytkownika po ID
+         Optional<UserEntity> downData = userRepository.findById(10);
+     //   wywala błąd przy braku id
+         return downData.orElseThrow(IllegalStateException::new).toString();
 
-        userRepository.save(userEntity);
-        return "Zapisano!!!";
+
     }
 
 }
