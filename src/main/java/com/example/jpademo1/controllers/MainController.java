@@ -80,5 +80,4 @@ public class MainController {
         return "register";
 
     }
-
 }
