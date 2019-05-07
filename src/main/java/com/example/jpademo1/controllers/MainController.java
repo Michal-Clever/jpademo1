@@ -53,6 +53,7 @@ public class MainController {
         return "register";
     }
 
+
     @PostMapping("/register")
     //  @ResponseBody
     public String register(@RequestParam("login") String login,
